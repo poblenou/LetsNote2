@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_no_margin"
     android:paddingRight="@dimen/activity_horizontal_no_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.project.letsnote.PerfilAjeno"
-    tools:showIn="@layout/activity_perfil_ajeno">
+    tools:showIn="@layout/activity_perfil_ajeno"
+    android:orientation="vertical"
+    android:background="#ffffffff"
+    android:showDividers="middle">
 
     <ImageView
         android:id="@+id/imagenPerfil"
@@ -29,7 +31,9 @@
         android:layout_below="@+id/imagenPerfil"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:paddingTop="@dimen/activity_vertical_margin" />
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:textStyle="bold"
+        android:textSize="@dimen/nombre_user_font_size"/>
 
     <TextView
         android:id="@+id/localidadUsuario"
@@ -166,5 +170,12 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSeguir"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/noseguido" />
 
 </LinearLayout>

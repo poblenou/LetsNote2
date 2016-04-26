@@ -6,4 +6,6 @@
     <dimen name="activity_vertical_no_margin">0dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="card_margin">16dp</dimen>
+    <dimen name="nombre_user_font_size">32sp</dimen>
+    <dimen name="normal_font_size">16sp</dimen>
 </resources>
