@@ -56,7 +56,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    android:src="@drawable/abc_ic_menu_copy_mtrl_am_alpha"/>
+                    android:src="@android:drawable/ic_delete"/>
 
                 <ImageView
                     android:id="@+id/two"

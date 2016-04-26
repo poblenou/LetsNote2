@@ -45,7 +45,7 @@ public class Login extends Activity {
     private LoginButton loginButton;
     private TextView btnLogin;
     private ProgressDialog progressDialog;
-    User user;
+    public static User user;
     public boolean userFound = false;
     Firebase ref;
 
@@ -65,7 +65,7 @@ public class Login extends Activity {
         setContentView(R.layout.activity_login);
 
         if(PrefUtils.getCurrentUser(Login.this) != null){
-
+            User user = PrefUtils.getCurrentUser(this);
             Intent homeIntent = new Intent(Login.this, MapsActivity.class);
             startActivity(homeIntent);
             finish();

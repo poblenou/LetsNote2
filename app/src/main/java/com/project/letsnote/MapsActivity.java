@@ -1,5 +1,6 @@
 package com.project.letsnote;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +13,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.project.letsnote.login.Login;
+import com.project.letsnote.login.PrefUtils;
+import com.project.letsnote.login.User;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
+    Intent intent;
     private FABToolbarLayout layout;
     private View one, two, three, four;
     private View fab;
@@ -59,7 +64,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         switch (v.getId()){
             case R.id.one:
-                Toast.makeText(this, "One", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, MiPerfil.class);
+                startActivity(intent);
                 break;
             case R.id.two:
                 Toast.makeText(this, "Two", Toast.LENGTH_SHORT).show();
@@ -90,5 +96,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        mMap.setMyLocationEnabled(true);
+
     }
 }
