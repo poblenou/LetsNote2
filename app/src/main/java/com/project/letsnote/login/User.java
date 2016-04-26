@@ -11,6 +11,18 @@ public class User {
 
     public String pictureUrl;
 
+    public String location;
+
+    public int numNotas;
+
+    public int seguidores;
+
+    public int seguidos;
+
+    public int totalLikes;
+
+    public String descripcion;
+
     public User() {
     }
 
@@ -52,5 +64,53 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getNumNotas() {
+        return numNotas;
+    }
+
+    public void setNumNotas(int numNotas) {
+        this.numNotas = numNotas;
+    }
+
+    public int getSeguidores() {
+        return seguidores;
+    }
+
+    public void setSeguidores(int seguidores) {
+        this.seguidores = seguidores;
+    }
+
+    public int getSeguidos() {
+        return seguidos;
+    }
+
+    public void setSeguidos(int seguidos) {
+        this.seguidos = seguidos;
+    }
+
+    public int getTotalLikes() {
+        return totalLikes;
+    }
+
+    public void setTotalLikes(int totalLikes) {
+        this.totalLikes = totalLikes;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

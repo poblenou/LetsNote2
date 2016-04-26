@@ -1,5 +1,6 @@
 package com.project.letsnote;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,12 +15,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.project.letsnote.login.FacebookLogout;
+import com.project.letsnote.login.Login;
+import com.project.letsnote.login.PrefUtils;
+import com.project.letsnote.login.User;
 
 public class MiPerfil extends AppCompatActivity {
 
     TextView nombreUsuario, localidadUsuario, numeroNotas, numeroLikes, numeroSeguidos, numeroSeguidores, descripcion;
     ImageView fotoPerfil;
-
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,16 +43,19 @@ public class MiPerfil extends AppCompatActivity {
 
         fotoPerfil = (ImageView) findViewById(R.id.imagenPerfil);
 
-        nombreUsuario.setText("Alex Ruiz Medina");
-        localidadUsuario.setText("Barcelona, ES");
-        numeroNotas.setText("16");
-        numeroLikes.setText("100");
-        numeroSeguidos.setText("200");
-        numeroSeguidores.setText("150");
-        descripcion.setText("Aloha!");
+
+        user = PrefUtils.getCurrentUser(this);
+
+        nombreUsuario.setText(user.getName());
+        localidadUsuario.setText(user.getLocation());
+        numeroNotas.setText(String.valueOf(user.getNumNotas()));
+        numeroLikes.setText(String.valueOf(user.getTotalLikes()));
+        numeroSeguidos.setText(String.valueOf(user.getSeguidos()));
+        numeroSeguidores.setText(String.valueOf(user.getSeguidores()));
+        descripcion.setText(user.getDescripcion());
 
 
-        Glide.with(this).load(R.drawable.fotoperfil).asBitmap().centerCrop().into(new BitmapImageViewTarget(fotoPerfil) {
+        Glide.with(this).load(user.getPictureUrl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(fotoPerfil) {
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(getBaseContext().getResources(), resource);
@@ -63,6 +71,9 @@ public class MiPerfil extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent salir = new Intent (MiPerfil.this, FacebookLogout.class);
+                startActivity(salir);
+
             }
         });
     }
