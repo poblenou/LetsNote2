@@ -71,7 +71,7 @@ public class MiPerfil extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Intent salir = new Intent (MiPerfil.this, FacebookLogout.class);
+                Intent salir = new Intent (MiPerfil.this, PerfilAjeno.class); //lo usamos para poder ver la otra activity
                 startActivity(salir);
 
             }

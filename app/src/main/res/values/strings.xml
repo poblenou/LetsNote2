@@ -9,12 +9,12 @@
     <string name="title_activity_mi_perfil">MiPerfil</string>
     <string name="title_activity_perfil_ajeno">PerfilAjeno</string>
 
-    <!-- Mi Perfil -->
+    <!-- Mi Perfil y PerfilAjeno-->
     <string name="notas">Notas</string>
     <string name="seguidos">Seguidos</string>
     <string name="seguidores">Seguidores</string>
     <string name="likes">Likes</string>
-    <string name="descripcion">Descripcion</string>
+    <string name="descripcion">Descripción</string>
 
 
 </resources>
