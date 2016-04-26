@@ -54,7 +54,17 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
-    </application>
+            android:label="@string/title_activity_maps"/>
+
+        <activity
+            android:name=".MiPerfil"
+            android:label="@string/title_activity_mi_perfil"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".PerfilAjeno"
+            android:label="@string/title_activity_perfil_ajeno"
+            android:theme="@style/AppTheme.NoActionBar"/>
+</application>
 
 </manifest>

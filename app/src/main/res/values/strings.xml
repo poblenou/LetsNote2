@@ -1,8 +1,20 @@
 <resources>
     <string name="app_name">LetsNote</string>
     <string name="facebook_app_id">1713683212207818</string>
+
+    <!--Nombre actividades-->
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_logout">Logout</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_mi_perfil">MiPerfil</string>
+    <string name="title_activity_perfil_ajeno">PerfilAjeno</string>
+
+    <!-- Mi Perfil -->
+    <string name="notas">Notas</string>
+    <string name="seguidos">Seguidos</string>
+    <string name="seguidores">Seguidores</string>
+    <string name="likes">Likes</string>
+    <string name="descripcion">Descripcion</string>
+
 
 </resources>
