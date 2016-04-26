@@ -4,11 +4,5 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_logout">Logout</string>
     <string name="title_activity_maps">Map</string>
-    <string name="title_activity_mi_perfil">MiPerfil</string>
-    <string name="likes">Likes</string>
-    <string name="notas">Notas</string>
-    <string name="seguidos">Seguidos</string>
-    <string name="seguidores">Seguidores</string>
-    <string name="descripcion">Descripcion</string>
 
 </resources>
