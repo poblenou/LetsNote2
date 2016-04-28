@@ -3,7 +3,13 @@ package com.project.letsnote;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
@@ -54,6 +60,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
+    private void setSupportActionBar(Toolbar toolbar) {
+    }
+
     @Override
     public void onBackPressed() {
         layout.hide();
@@ -68,7 +77,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(intent);
                 break;
             case R.id.two:
-                Toast.makeText(this, "Two", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, PruebaPerfil.class);
+                startActivity(intent);
                 break;
             case R.id.three:
                 Toast.makeText(this, "Three", Toast.LENGTH_SHORT).show();
@@ -100,4 +110,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMyLocationEnabled(true);
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_map){
+            Intent intent = new Intent(getBaseContext(), MapsActivity.class);
+            startActivity(intent);
+        }else if(id == R.id.action_notes){
+            Intent intent = new Intent(getBaseContext(), PruebaPerfil.class);
+            startActivity(intent);
+        }else if(id == R.id.action_profile){
+            Intent intent = new Intent(getBaseContext(), PerfilAjeno.class);
+            startActivity(intent);
+        }else if(id == R.id.action_messages){
+            Intent intent = new Intent(getBaseContext(), PerfilAjeno.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }
