@@ -24,7 +24,10 @@
     <string name="title_activity_prueba">Prueba</string>
     <string name="title_activity_base_drawer">BaseDrawerActivity</string>
 
-    <string name="action_map">Map</string>
+    <string name="action_map">Mapa</string>
+    <string name="action_messages">Mensajes</string>
+    <string name="action_notes">Notas</string>
+    <string name="action_profile">Mi Perfil</string>
     <string name="title_activity_prueba_perfil">PruebaPerfil</string>
 
 

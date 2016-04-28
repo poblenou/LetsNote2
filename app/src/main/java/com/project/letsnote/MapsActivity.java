@@ -1,8 +1,10 @@
 package com.project.letsnote;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -10,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
@@ -23,7 +26,7 @@ import com.project.letsnote.login.Login;
 import com.project.letsnote.login.PrefUtils;
 import com.project.letsnote.login.User;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
     Intent intent;
@@ -39,6 +42,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMap);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        createFont();
 
         layout = (FABToolbarLayout) findViewById(R.id.fabtoolbar);
         one = findViewById(R.id.one);
@@ -60,8 +68,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-    private void setSupportActionBar(Toolbar toolbar) {
-    }
 
     @Override
     public void onBackPressed() {
@@ -135,6 +141,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void createFont(){
+        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/quirlycues.regular.ttf");
+        TextView title = (TextView)findViewById(R.id.text_toolbar);
+        title.setTypeface(tf);
     }
 
 
