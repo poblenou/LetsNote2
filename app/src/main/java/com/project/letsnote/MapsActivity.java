@@ -68,7 +68,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(intent);
                 break;
             case R.id.two:
-                Toast.makeText(this, "Two", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, AddPhotoActivity.class);
+                startActivity(intent);
                 break;
             case R.id.three:
                 Toast.makeText(this, "Three", Toast.LENGTH_SHORT).show();
@@ -93,9 +94,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+/*        LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
 
         mMap.setMyLocationEnabled(true);
 

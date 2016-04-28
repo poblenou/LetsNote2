@@ -1,14 +1,11 @@
 package com.project.letsnote.login;
 
 public class User {
+
     public String name;
-
     public String email;
-
     public String facebookID;
-
     public String gender;
-
     public String pictureUrl;
 
     public User() {

@@ -27,7 +27,6 @@ public class MiPerfil extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         nombreUsuario = (TextView) findViewById(R.id.nombreMiPerfil);
         localidadUsuario = (TextView) findViewById(R.id.localidadMiPerfil);
         numeroNotas = (TextView) findViewById(R.id.numeroNotas);
@@ -35,7 +34,6 @@ public class MiPerfil extends AppCompatActivity {
         numeroSeguidos = (TextView) findViewById(R.id.numeroSeguidos);
         numeroSeguidores = (TextView) findViewById(R.id.numeroSeguidores);
         descripcion = (TextView) findViewById(R.id.descripcionUser);
-
         fotoPerfil = (ImageView) findViewById(R.id.imagenPerfil);
 
         nombreUsuario.setText("Alex Ruiz Medina");
@@ -46,7 +44,6 @@ public class MiPerfil extends AppCompatActivity {
         numeroSeguidores.setText("150");
         descripcion.setText("Aloha!");
 
-
         Glide.with(this).load(R.drawable.fotoperfil).asBitmap().centerCrop().into(new BitmapImageViewTarget(fotoPerfil) {
             @Override
             protected void setResource(Bitmap resource) {
@@ -55,7 +52,6 @@ public class MiPerfil extends AppCompatActivity {
                 fotoPerfil.setImageDrawable(circularBitmapDrawable);
             }
         });
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
