@@ -9,23 +9,13 @@
     <string name="title_activity_mi_perfil">MiPerfil</string>
     <string name="title_activity_perfil_ajeno">PerfilAjeno</string>
 
-    <!-- Mi Perfil y PerfilAjeno-->
+    <!-- Mi Perfil -->
     <string name="notas">Notas</string>
     <string name="seguidos">Seguidos</string>
     <string name="seguidores">Seguidores</string>
     <string name="likes">Likes</string>
-    <string name="descripcion">Descripción</string>
-
-
-    <string name="numNotas">0</string>
-    <string name="numLikes">0</string>
-    <string name="numSeguidores">0</string>
-    <string name="numSeguidos">0</string>
-    <string name="title_activity_prueba">Prueba</string>
-    <string name="title_activity_base_drawer">BaseDrawerActivity</string>
-
-    <string name="action_map">Map</string>
-    <string name="title_activity_prueba_perfil">PruebaPerfil</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="title_activity_add_photo">AddPhotoActivity</string>
 
 
 </resources>

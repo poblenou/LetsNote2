@@ -2,14 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.project.letsnote">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -63,13 +65,19 @@
             android:label="@string/title_activity_perfil_ajeno"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.BaseDrawerActivity"
-            android:label="@string/title_activity_base_drawer"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".PruebaPerfil"
-            android:label="@string/title_activity_prueba_perfil"
-            android:theme="@style/AppTheme"></activity>
+            android:name=".AddPhotoActivity"
+            android:label="@string/title_activity_add_photo"
+            android:parentActivityName=".MapsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.project.letsnote.MapsActivity" />
+        </activity>
+
+        <service
+            android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
+            android:enabled="true" />
+
     </application>
 
 </manifest>
