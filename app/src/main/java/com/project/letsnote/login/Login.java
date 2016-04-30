@@ -142,6 +142,8 @@ public class Login extends Activity {
                            user.setName(bFacebookData.getString("name"));
                            user.setGender(bFacebookData.getString("gender"));
                            user.setPictureUrl(bFacebookData.getString("profile_pic"));
+                           user.setLocation(bFacebookData.getString("location"));
+                           user.setDescripcion("Sin descripción");
 
                            //Recorremos los users defirebase para ver si ya exixte
                            ref.addListenerForSingleValueEvent(new ValueEventListener() {

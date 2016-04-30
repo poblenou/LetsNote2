@@ -1,5 +1,6 @@
 package com.project.letsnote;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -34,13 +35,12 @@ import com.project.letsnote.login.User;
 
 import java.io.File;
 
-public class AddPhotoActivity extends AppCompatActivity implements LocationListener {
+public class AddVideoActivity extends AppCompatActivity implements LocationListener {
 
     AmazonS3 s3;
     TransferUtility transferUtility;
     FloatingActionButton fab;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    static final int REQUEST_TAKE_PHOTO = 1;
+    static final int REQUEST_VIDEO_CAPTURE = 1;
     User user;
     Location loc = null;
     TextView titulo, descripcion;
@@ -49,7 +49,7 @@ public class AddPhotoActivity extends AppCompatActivity implements LocationListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_photo);
+        setContentView(R.layout.activity_add_video);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,13 +70,12 @@ public class AddPhotoActivity extends AppCompatActivity implements LocationListe
         // Register the listener with the Location Manager to receive location updates
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if(descripcion.getText().toString().length() > 0 && titulo.getText().toString().length() > 0){
-                    Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    Intent takePicture = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                     startActivityForResult(takePicture, 0);
                 }else{
                     if(titulo.getText().toString().length() <= 0) {
@@ -101,6 +100,7 @@ public class AddPhotoActivity extends AppCompatActivity implements LocationListe
         switch(requestCode) {
             case 0:
                 if(resultCode == RESULT_OK){
+
                     Uri selectedImage = imageReturnedIntent.getData();
                     String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
@@ -141,7 +141,7 @@ public class AddPhotoActivity extends AppCompatActivity implements LocationListe
                     nota.setLongitud(loc.getLongitude());
                     nota.setUser(user.getFacebookID());
                     nota.setTitulo(titulo.getText().toString());
-                    nota.setTipo("foto");
+                    nota.setTipo("video");
 
                     nota.setFavs(0);
                     refNota.setValue(nota);
@@ -149,8 +149,6 @@ public class AddPhotoActivity extends AppCompatActivity implements LocationListe
 
                     titulo.setText("");
                     descripcion.setText("");
-
-
 
                 }
                 break;
@@ -197,7 +195,7 @@ public class AddPhotoActivity extends AppCompatActivity implements LocationListe
             public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
                 int percentage = (int) (bytesCurrent / bytesTotal * 100);
                 Log.e("percentage", percentage + "");
-                Toast.makeText(AddPhotoActivity.this, "Subiendo nota", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddVideoActivity.this, "Subiendo nota", Toast.LENGTH_SHORT).show();
                 if(percentage == 100){
                     Intent intent = new Intent (getBaseContext(), MapsActivity.class);
                     startActivity(intent);
@@ -233,26 +231,3 @@ public class AddPhotoActivity extends AppCompatActivity implements LocationListe
 
     }
 }
-
-/*    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-
-        String path = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES) +"/LetsNote";
-        File storageDir = new File(path);
-        if(!storageDir.exists()){
-            storageDir.mkdirs();
-        }else {
-
-            File image = File.createTempFile(
-                    imageFileName,  *//* prefix *//*
-                    ".jpg",         *//* suffix *//*
-                    storageDir      *//* directory *//*
-            );
-
-            return image;
-        }
-        return  null;
-    }*/
