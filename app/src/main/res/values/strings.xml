@@ -8,6 +8,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_mi_perfil">MiPerfil</string>
     <string name="title_activity_perfil_ajeno">PerfilAjeno</string>
+    <string name="title_activity_add_photo">AddPhotoActivity</string>
 
     <!-- Mi Perfil -->
     <string name="notas">Notas</string>
@@ -15,7 +16,14 @@
     <string name="seguidores">Seguidores</string>
     <string name="likes">Likes</string>
     <string name="descripcion">Descripcion</string>
-    <string name="title_activity_add_photo">AddPhotoActivity</string>
 
+
+    <!-- Items menu -->
+    <string name="action_map">Mapa</string>
+    <string name="action_messages">Mensajes</string>
+    <string name="action_notes">Notas</string>
+    <string name="action_profile">Mi Perfil</string>
+    <string name="title_activity_lista_notas">ListaNotasActivity</string>
+    <string name="title_activity_add_video">AddVideoActivity</string>
 
 </resources>

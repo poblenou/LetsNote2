@@ -7,17 +7,11 @@ public class User {
     public String facebookID;
     public String gender;
     public String pictureUrl;
-
-    public String location;
-
-    public int numNotas;
-
-    public int seguidores;
-
-    public int seguidos;
-
     public int totalLikes;
-
+    public int seguidos;
+    public int seguidores;
+    public int numNotas;
+    public String location;
     public String descripcion;
 
     public User() {
@@ -63,28 +57,12 @@ public class User {
         this.gender = gender;
     }
 
-    public String getLocation() {
-        return location;
+    public int getTotalLikes() {
+        return totalLikes;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public int getNumNotas() {
-        return numNotas;
-    }
-
-    public void setNumNotas(int numNotas) {
-        this.numNotas = numNotas;
-    }
-
-    public int getSeguidores() {
-        return seguidores;
-    }
-
-    public void setSeguidores(int seguidores) {
-        this.seguidores = seguidores;
+    public void setTotalLikes(int totalLikes) {
+        this.totalLikes = totalLikes;
     }
 
     public int getSeguidos() {
@@ -95,12 +73,28 @@ public class User {
         this.seguidos = seguidos;
     }
 
-    public int getTotalLikes() {
-        return totalLikes;
+    public int getSeguidores() {
+        return seguidores;
     }
 
-    public void setTotalLikes(int totalLikes) {
-        this.totalLikes = totalLikes;
+    public void setSeguidores(int seguidores) {
+        this.seguidores = seguidores;
+    }
+
+    public int getNumNotas() {
+        return numNotas;
+    }
+
+    public void setNumNotas(int numNotas) {
+        this.numNotas = numNotas;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getDescripcion() {

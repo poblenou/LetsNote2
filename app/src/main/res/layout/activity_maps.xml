@@ -8,12 +8,25 @@
     android:layout_height="match_parent"
     tools:context="com.project.letsnote.MapsActivity" >
 
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
 
         <com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout
             android:id="@+id/fabtoolbar"
@@ -40,7 +53,7 @@
                     android:layout_height="wrap_content"
                     app:fabSize="normal"
                     app:borderWidth="0dp"
-                    android:src="@drawable/abc_ic_menu_share_mtrl_alpha"/>
+                    android:src="@drawable/send"/>
 
             </RelativeLayout>
 
@@ -57,7 +70,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    android:src="@android:drawable/ic_dialog_info"/>
+                    android:src="@drawable/camera"/>
 
                 <ImageView
                     android:id="@+id/two"
@@ -65,7 +78,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    android:src="@drawable/abc_ic_menu_paste_mtrl_am_alpha"/>
+                    android:src="@drawable/video"/>
 
                 <ImageView
                     android:id="@+id/three"
@@ -73,15 +86,15 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    android:src="@drawable/abc_ic_menu_selectall_mtrl_alpha"/>
+                    android:src="@drawable/clipboard_text"/>
 
-                <ImageView
+<!--                <ImageView
                     android:id="@+id/four"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    android:src="@drawable/abc_ic_menu_cut_mtrl_alpha"/>
+                    android:src="@drawable/abc_ic_menu_cut_mtrl_alpha"/>-->
 
             </LinearLayout>
 

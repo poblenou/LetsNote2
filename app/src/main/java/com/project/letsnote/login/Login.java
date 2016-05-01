@@ -57,7 +57,7 @@ public class Login extends Activity {
         Firebase.setAndroidContext(this);
 
         //Le decimos en el ambito que estara el FacebookSDK (Lo inicializamos en la activity)
-        FacebookSdk.sdkInitialize(getApplication());
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
         //Metodo para que nos de el debug HashKey de Facebook
         getFacebookDebugKeyHash();
@@ -81,7 +81,7 @@ public class Login extends Activity {
 
         loginButton= (LoginButton)findViewById(R.id.login_button);
 
-        loginButton.setReadPermissions("public_profile","email","user_friends", "user_location");
+        loginButton.setReadPermissions("public_profile","email","user_friends");
 
         btnLogin= (TextView) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -143,11 +143,6 @@ public class Login extends Activity {
                            user.setGender(bFacebookData.getString("gender"));
                            user.setPictureUrl(bFacebookData.getString("profile_pic"));
                            user.setLocation(bFacebookData.getString("location"));
-                           System.out.println(bFacebookData.getString("location"));
-                           user.setNumNotas(0);
-                           user.setSeguidores(0);
-                           user.setSeguidos(0);
-                           user.setTotalLikes(0);
                            user.setDescripcion("Sin descripción");
 
                            //Recorremos los users defirebase para ver si ya exixte
@@ -198,7 +193,7 @@ public class Login extends Activity {
             });
 
             Bundle parameters = new Bundle();
-            parameters.putString("fields", "id, name, first_name, last_name, email, gender, birthday, location");
+            parameters.putString("fields", "id, name, first_name, last_name, email,gender, birthday, location");
             request.setParameters(parameters);
             request.executeAsync();
         }
@@ -293,7 +288,7 @@ public class Login extends Activity {
     public void getFacebookDebugKeyHash(){
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
-                    "com.project.letsnote",  // replace with your unique package name
+                    "com.letsnote.logins",  // replace with your unique package name
                     PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");

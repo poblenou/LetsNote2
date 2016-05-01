@@ -55,19 +55,13 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".MiPerfil"
-            android:label="@string/title_activity_mi_perfil"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".PerfilAjeno"
-            android:label="@string/title_activity_perfil_ajeno"
+            android:label="@string/title_activity_maps"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddPhotoActivity"
             android:label="@string/title_activity_add_photo"
             android:parentActivityName=".MapsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -78,6 +72,19 @@
             android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
             android:enabled="true" />
 
+        <activity
+            android:name=".ListaNotasActivity"
+            android:label="@string/title_activity_lista_notas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddVideoActivity"
+            android:label="@string/title_activity_add_video"
+            android:parentActivityName=".MapsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.project.letsnote.MapsActivity" />
+        </activity>
     </application>
 
 </manifest>
