@@ -130,7 +130,7 @@ public class AddVideoActivity extends AppCompatActivity implements LocationListe
                     Firebase.setAndroidContext(getBaseContext());
 
                     //Creamos una referencia a nuestra bd de Firebase y a su hijo
-                    final Firebase refNota = new Firebase("https://letsnote.firebaseio.com/").child("notas").push();
+                    final Firebase refNota = new Firebase("https://letsnote.firebaseio.com/notas/video").child(user.getFacebookID()).push();
 
                     Nota nota = new Nota();
 
@@ -143,7 +143,6 @@ public class AddVideoActivity extends AppCompatActivity implements LocationListe
                     nota.setTitulo(titulo.getText().toString());
                     nota.setTipo("video");
 
-                    nota.setFavs(0);
                     refNota.setValue(nota);
 
 

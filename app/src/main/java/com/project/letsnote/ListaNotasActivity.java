@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -60,7 +61,7 @@ public class ListaNotasActivity extends AppCompatActivity {
                 TextView likes = (TextView) v.findViewById(R.id.likesNotaLista);
 
                 titulo.setText(model.getTitulo());
-                likes.setText(String.valueOf(model.getFavs()));
+
 
 
                 //Creamos una referencia a nuestra bd de Firebase
@@ -113,11 +114,11 @@ public class ListaNotasActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-/*                intent = new Intent(getBaseContext(), DetailActivity.class);
+                intent = new Intent(getBaseContext(), DetailActivity.class);
                 Firebase ref = adapter.getRef(position);
                 Toast.makeText(getApplicationContext(), ref.toString(), Toast.LENGTH_LONG).show();
                 intent.putExtra("nota_ref", ref.toString());
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
 

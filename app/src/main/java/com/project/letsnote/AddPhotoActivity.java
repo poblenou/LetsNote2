@@ -29,10 +29,13 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.firebase.client.Firebase;
+import com.project.letsnote.login.Login;
 import com.project.letsnote.login.PrefUtils;
 import com.project.letsnote.login.User;
 
 import java.io.File;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class AddPhotoActivity extends AppCompatActivity implements LocationListener {
 
@@ -44,6 +47,7 @@ public class AddPhotoActivity extends AppCompatActivity implements LocationListe
     User user;
     Location loc = null;
     TextView titulo, descripcion;
+    String id;
 
 
     @Override
@@ -68,7 +72,7 @@ public class AddPhotoActivity extends AppCompatActivity implements LocationListe
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         // Register the listener with the Location Manager to receive location updates
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 20, this);
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -136,23 +140,25 @@ public class AddPhotoActivity extends AppCompatActivity implements LocationListe
 
                     nota.setDescripcion(descripcion.getText().toString());
                     nota.setUrl_media(urlImagen);
-
                     nota.setLatitud(loc.getLatitude());
                     nota.setLongitud(loc.getLongitude());
-                    nota.setUser(user.getFacebookID());
+                    nota.setUser(Login.FIREBASEKEY);
                     nota.setTitulo(titulo.getText().toString());
                     nota.setTipo("foto");
-
-                    nota.setFavs(0);
                     refNota.setValue(nota);
-
 
                     titulo.setText("");
                     descripcion.setText("");
 
+                    //Creamos una referencia a nuestra bd de Firebase y a su hijo
+                    final Firebase refUser = new Firebase("https://letsnote.firebaseio.com/users").child(Login.FIREBASEKEY).child("notas").child(refNota.getKey());
+                    refUser.setValue(true);
 
+                    //Creamos una referencia a nuestra bd de Firebase y a su hijo
+                    final Firebase refFoto = new Firebase("https://letsnote.firebaseio.com/users").child(Login.FIREBASEKEY).child("fotos").child(refNota.getKey());
+                    refFoto.setValue(true);
 
-                }
+                                 }
                 break;
         }
 

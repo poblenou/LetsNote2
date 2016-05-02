@@ -48,6 +48,7 @@ public class Login extends Activity {
     public static User user;
     public boolean userFound = false;
     Firebase ref;
+    public static String FIREBASEKEY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +65,10 @@ public class Login extends Activity {
 
         setContentView(R.layout.activity_login);
 
-        if(PrefUtils.getCurrentUser(Login.this) != null){
+        if (PrefUtils.getCurrentUser(Login.this) != null) {
             User user = PrefUtils.getCurrentUser(this);
+            getKey(user);
+            System.out.println("KEY ----------> "+FIREBASEKEY);
             Intent homeIntent = new Intent(Login.this, MapsActivity.class);
             startActivity(homeIntent);
             finish();
@@ -77,13 +80,13 @@ public class Login extends Activity {
         super.onResume();
 
 
-        callbackManager=CallbackManager.Factory.create();
+        callbackManager = CallbackManager.Factory.create();
 
-        loginButton= (LoginButton)findViewById(R.id.login_button);
+        loginButton = (LoginButton) findViewById(R.id.login_button);
 
-        loginButton.setReadPermissions("public_profile","email","user_friends");
+        loginButton.setReadPermissions("public_profile", "email", "user_friends");
 
-        btnLogin= (TextView) findViewById(R.id.btnLogin);
+        btnLogin = (TextView) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,68 +127,69 @@ public class Login extends Activity {
             ref = new Firebase("https://letsnote.firebaseio.com//users");
 
             // App code
-            GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),new GraphRequest.GraphJSONObjectCallback() {
+            GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                 @Override
                 public void onCompleted(final JSONObject object, GraphResponse response) {
 
-                   Log.e("Respuesta: ", response + "");
-                   try {
-                       try {
-                           user = new User();
+                    Log.e("Respuesta: ", response + "");
+                    try {
+                        try {
+                            user = new User();
                           /*
                           Entra por parametro un object que es el JSON con la informacion de facebook del usuario
                           toda esa informacion la metemos en un Bundle para luego guardarla en Firebase
                           */
-                           Bundle bFacebookData = getFacebookData(object);
-                           user.setFacebookID(bFacebookData.getString("idFacebook"));
-                           user.setEmail(bFacebookData.getString("email"));
-                           user.setName(bFacebookData.getString("name"));
-                           user.setGender(bFacebookData.getString("gender"));
-                           user.setPictureUrl(bFacebookData.getString("profile_pic"));
-                           user.setLocation(bFacebookData.getString("location"));
-                           user.setDescripcion("Sin descripción");
+                            Bundle bFacebookData = getFacebookData(object);
+                            user.setFacebookID(bFacebookData.getString("idFacebook"));
+                            user.setEmail(bFacebookData.getString("email"));
+                            user.setName(bFacebookData.getString("name"));
+                            user.setGender(bFacebookData.getString("gender"));
+                            user.setPictureUrl(bFacebookData.getString("profile_pic"));
+                            user.setLocation(bFacebookData.getString("location"));
+                            user.setDescripcion("Sin descripción");
+                            FIREBASEKEY = ref.getKey();
 
-                           //Recorremos los users defirebase para ver si ya exixte
-                           ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                            //Recorremos los users defirebase para ver si ya exixte
+                            ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
-                               @Override
-                               public void onDataChange(DataSnapshot snapshot) {
-                                   for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                @Override
+                                public void onDataChange(DataSnapshot snapshot) {
+                                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
 
                                        /*Creamos un usuario para que coja las propiedas de cada uno y
                                         y compararemos la id del usuario que se esta logueando con las ya guardadas.*/
-                                       User userSnapshot = postSnapshot.getValue(User.class);
-                                       System.out.println("-------------------------------------------> " + userSnapshot.getFacebookID());
-                                       if (userSnapshot.getFacebookID().equals(user.getFacebookID())) {
-                                           //Si existe ya el usuario en Firebase, lo ponemos a true y salimos
-                                           userFound = true;
-                                           break;
-                                       }
-                                   }
-                                   //Si es falso es porque no lo ha encontrado y lo guardamos en Firebase
-                                   if(!userFound) {
-                                       addInfoFirebase(user);
-                                   }
-                               }
+                                        User userSnapshot = postSnapshot.getValue(User.class);
+                                        System.out.println("-------------------------------------------> " + userSnapshot.getFacebookID());
+                                        if (userSnapshot.getFacebookID().equals(user.getFacebookID())) {
+                                            //Si existe ya el usuario en Firebase, lo ponemos a true y salimos
+                                            userFound = true;
+                                            break;
+                                        }
+                                    }
+                                    //Si es falso es porque no lo ha encontrado y lo guardamos en Firebase
+                                    if (!userFound) {
+                                        addInfoFirebase(user);
+                                    }
+                                }
 
-                               @Override
-                               public void onCancelled(FirebaseError firebaseError) {
-                               }
+                                @Override
+                                public void onCancelled(FirebaseError firebaseError) {
+                                }
 
-                           });
+                            });
 
-                       } catch (JSONException e) {
-                           e.printStackTrace();
-                       }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                       PrefUtils.setCurrentUser(user, Login.this);
+                        PrefUtils.setCurrentUser(user, Login.this);
 
-                   }catch (Exception e){
-                       e.printStackTrace();
-                   }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
-                    Toast.makeText(Login.this,"Bienvenido " + user.name,Toast.LENGTH_LONG).show();
-                    Intent intent=new Intent(Login.this, MapsActivity.class);
+                    Toast.makeText(Login.this, "Bienvenido " + user.name, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Login.this, MapsActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -214,7 +218,7 @@ public class Login extends Activity {
      * Nos crea un objecto tipo Bundle, que guardará los datos del parámetro que le pasamos, que es un JSONObject
      * con las 'key' que le asignemos.
      * La recuperación se haría de la siguiente manera:
-     *
+     * <p/>
      * Bundle nombreDelBundle = getFacebookData(object);
      * nombreDelBundle.getString("idFacebook").toString(); -> tiene key 'idFacebook'.
      *
@@ -224,46 +228,47 @@ public class Login extends Activity {
      */
     private Bundle getFacebookData(JSONObject object) throws JSONException {
 
-            Bundle bundle = new Bundle();
-            String id = object.getString("id");
+        Bundle bundle = new Bundle();
+        String id = object.getString("id");
 
-            try {
-                URL profile_pic = new URL("https://graph.facebook.com/" + id + "/picture?width=200&height=150");
-                Log.i("profile_pic", profile_pic + "");
-                bundle.putString("profile_pic", profile_pic.toString());
+        try {
+            URL profile_pic = new URL("https://graph.facebook.com/" + id + "/picture?width=200&height=150");
+            Log.i("profile_pic", profile_pic + "");
+            bundle.putString("profile_pic", profile_pic.toString());
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                return null;
-            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
+        }
 
-            bundle.putString("idFacebook", id);
-            if (object.has("name"))
+        bundle.putString("idFacebook", id);
+        if (object.has("name"))
             bundle.putString("name", object.getString("name"));
-            if (object.has("first_name"))
-                bundle.putString("first_name", object.getString("first_name"));
-            if (object.has("last_name"))
-                bundle.putString("last_name", object.getString("last_name"));
-            if (object.has("email"))
-                bundle.putString("email", object.getString("email"));
-            if (object.has("gender"))
-                bundle.putString("gender", object.getString("gender"));
-            if (object.has("birthday"))
-                bundle.putString("birthday", object.getString("birthday"));
-            if (object.has("location"))
-                bundle.putString("location", object.getJSONObject("location").getString("name"));
+        if (object.has("first_name"))
+            bundle.putString("first_name", object.getString("first_name"));
+        if (object.has("last_name"))
+            bundle.putString("last_name", object.getString("last_name"));
+        if (object.has("email"))
+            bundle.putString("email", object.getString("email"));
+        if (object.has("gender"))
+            bundle.putString("gender", object.getString("gender"));
+        if (object.has("birthday"))
+            bundle.putString("birthday", object.getString("birthday"));
+        if (object.has("location"))
+            bundle.putString("location", object.getJSONObject("location").getString("name"));
 
-            return bundle;
+        return bundle;
     }
 
     /**
      * Método para convertir a bitmap la imagen referenciada por a URL.
+     *
      * @param url
      * @return
      * @throws IOException
      */
     public static Bitmap getFacebookProfilePicture(String url) throws IOException {
-        URL facebookProfileURL= new URL(url);
+        URL facebookProfileURL = new URL(url);
         Bitmap bitmap = BitmapFactory.decodeStream(facebookProfileURL.openConnection().getInputStream());
         return bitmap;
     }
@@ -274,9 +279,10 @@ public class Login extends Activity {
      * pero dependiendo de comprobaciones anteriores puede seguir siendo cero, y no se gestionará ninguna acción de guardado,
      * o diferente a cero, en este último caso sí guardaremos los datos del usuario 'user', que es el otro
      * parámetro que se le pasa.
+     *
      * @param user
      */
-    public static void addInfoFirebase(User user){
+    public static void addInfoFirebase(User user) {
         final Firebase refUsers = new Firebase("https://letsnote.firebaseio.com/").child("users").push();
         refUsers.setValue(user);
     }
@@ -285,7 +291,7 @@ public class Login extends Activity {
     Metodo nos devuelve el debug keyhash en un Log. No es necesario para la aplicación, pero si para el desarrollo
     y poder utilizar el login de facebook.
     */
-    public void getFacebookDebugKeyHash(){
+    public void getFacebookDebugKeyHash() {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
                     "com.letsnote.logins",  // replace with your unique package name
@@ -300,5 +306,28 @@ public class Login extends Activity {
         } catch (NoSuchAlgorithmException e) {
 
         }
+    }
+
+    public void getKey(final User user) {
+
+        ref = new Firebase("https://letsnote.firebaseio.com//users");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            User userFinal = user;
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    if (userFinal.getFacebookID().equals(postSnapshot.getValue(User.class).getFacebookID())) {
+                        FIREBASEKEY = postSnapshot.getKey();
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+
+        });
     }
 }

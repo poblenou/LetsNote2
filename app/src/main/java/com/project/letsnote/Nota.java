@@ -1,5 +1,6 @@
 package com.project.letsnote;
 
+import java.util.ArrayList;
 
 public class Nota {
 
@@ -10,7 +11,8 @@ public class Nota {
     String tipo;
     String titulo;
     String user;
-    int favs;
+    public ArrayList<String> likes = new ArrayList<>();
+    public ArrayList<Comentario> comment = new ArrayList<>();
 
     public Nota(){}
 
@@ -70,11 +72,19 @@ public class Nota {
         this.user = user;
     }
 
-    public int getFavs() {
-        return favs;
+    public ArrayList<String> getLikes() {
+        return likes;
     }
 
-    public void setFavs(int favs) {
-        this.favs = favs;
+    public void setLikes(ArrayList<String> likes) {
+        this.likes = likes;
+    }
+
+    public ArrayList<Comentario> getComment() {
+        return comment;
+    }
+
+    public void setComment(ArrayList<Comentario> comment) {
+        this.comment = comment;
     }
 }

@@ -25,5 +25,6 @@
     <string name="action_profile">Mi Perfil</string>
     <string name="title_activity_lista_notas">ListaNotasActivity</string>
     <string name="title_activity_add_video">AddVideoActivity</string>
+    <string name="title_activity_detail">DetailActivity</string>
 
 </resources>

@@ -1,17 +1,33 @@
 package com.project.letsnote.login;
 
-public class User {
+import android.util.ArrayMap;
 
+import java.util.ArrayList;
+
+import java.util.Map;
+import java.util.TreeMap;
+
+public class User {
     public String name;
+
     public String email;
+
     public String facebookID;
+
     public String gender;
+
     public String pictureUrl;
-    public int totalLikes;
-    public int seguidos;
-    public int seguidores;
-    public int numNotas;
+
     public String location;
+
+    public ArrayList<String> seguidos = new ArrayList<>();
+    public ArrayList<String> seguidores = new ArrayList<>();
+
+    public ArrayList<String> notas = new ArrayList<String>();
+    public ArrayList<String> fotos = new ArrayList<>();
+    public ArrayList<String> video = new ArrayList<>();
+    public ArrayList<String> texto = new ArrayList<>();
+
     public String descripcion;
 
     public User() {
@@ -57,38 +73,6 @@ public class User {
         this.gender = gender;
     }
 
-    public int getTotalLikes() {
-        return totalLikes;
-    }
-
-    public void setTotalLikes(int totalLikes) {
-        this.totalLikes = totalLikes;
-    }
-
-    public int getSeguidos() {
-        return seguidos;
-    }
-
-    public void setSeguidos(int seguidos) {
-        this.seguidos = seguidos;
-    }
-
-    public int getSeguidores() {
-        return seguidores;
-    }
-
-    public void setSeguidores(int seguidores) {
-        this.seguidores = seguidores;
-    }
-
-    public int getNumNotas() {
-        return numNotas;
-    }
-
-    public void setNumNotas(int numNotas) {
-        this.numNotas = numNotas;
-    }
-
     public String getLocation() {
         return location;
     }
@@ -97,11 +81,59 @@ public class User {
         this.location = location;
     }
 
+    public ArrayList<String> getSeguidos() {
+        return seguidos;
+    }
+
+    public void setSeguidos(ArrayList<String> seguidos) {
+        this.seguidos = seguidos;
+    }
+
+    public ArrayList<String> getSeguidores() {
+        return seguidores;
+    }
+
+    public void setSeguidores(ArrayList<String> seguidores) {
+        this.seguidores = seguidores;
+    }
+
+    public ArrayList<String> getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(ArrayList<String> fotos) {
+        this.fotos = fotos;
+    }
+
+    public ArrayList<String> getVideo() {
+        return video;
+    }
+
+    public void setVideo(ArrayList<String> video) {
+        this.video = video;
+    }
+
+    public ArrayList<String> getTexto() {
+        return texto;
+    }
+
+    public void setTexto(ArrayList<String> texto) {
+        this.texto = texto;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public ArrayList<String> getNotas() {
+        return notas;
+    }
+
+    public void setNotas(ArrayList<String> notas) {
+        this.notas = notas;
     }
 }
